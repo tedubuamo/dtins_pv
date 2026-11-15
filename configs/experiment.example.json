@@ -1,0 +1,15 @@
+{
+  "data": {
+    "timestamp_column": "timestamp",
+    "power_column": "Production Power (W)",
+    "timezone": "Asia/Jakarta",
+    "dayfirst": false,
+    "sheet": 0
+  },
+  "boundaries": [],
+  "candidates": [
+    {"lookback": 6, "hidden": 32, "layers": 1, "dropout": 0.1, "learning_rate": 0.001, "batch_size": 32, "epochs": 100, "patience": 10, "seed": 42},
+    {"lookback": 12, "hidden": 32, "layers": 1, "dropout": 0.1, "learning_rate": 0.001, "batch_size": 32, "epochs": 100, "patience": 10, "seed": 42},
+    {"lookback": 24, "hidden": 32, "layers": 1, "dropout": 0.1, "learning_rate": 0.001, "batch_size": 32, "epochs": 100, "patience": 10, "seed": 42}
+  ]
+}
