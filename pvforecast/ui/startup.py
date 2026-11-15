@@ -8,15 +8,20 @@ from pvforecast.data import Dataset, dataset_hash
 from pvforecast.model import unpack
 
 
+def project_path(root, value):
+    # Existing local experiment summaries used Windows separators.
+    return root / value.replace("\\", "/")
+
+
 def load_default_experiment(root):
     profile = root / "configs/dashboard.json"
     if not profile.exists():
         return None
     config = json.loads(profile.read_text(encoding="utf-8"))
-    experiment = root / config["experiment"]
+    experiment = project_path(root, config["experiment"])
     summary = json.loads((experiment / "summary.json").read_text(encoding="utf-8"))
-    bundle = unpack((root / summary["model"]).read_bytes())
-    audit_folder = root / summary["audit"]
+    bundle = unpack(project_path(root, summary["model"]).read_bytes())
+    audit_folder = project_path(root, summary["audit"])
     report = json.loads((audit_folder / "quality.json").read_text(encoding="utf-8"))
     clean = pd.read_csv(audit_folder / "clean.csv", float_precision="round_trip")
     clean["timestamp"] = pd.to_datetime(clean.timestamp, utc=True).dt.tz_convert(report["timezone"])

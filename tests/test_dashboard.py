@@ -97,3 +97,28 @@ def test_saved_startup_pair_and_mismatched_data(experiment, tmp_path):
     altered.to_csv(tmp_path / "audit/clean.csv", index=False)
     with pytest.raises(ValueError, match="tidak cocok"):
         load_default_experiment(tmp_path)
+
+
+def test_cloud_default_without_local_artifact_folders(tmp_path):
+    import shutil
+    from pvforecast.ui.startup import load_default_experiment
+    from pvforecast.forecast import forecast
+    root = APP.parent
+    shutil.copytree(root / "deployment", tmp_path / "deployment")
+    (tmp_path / "configs").mkdir()
+    shutil.copyfile(root / "configs/dashboard.json", tmp_path / "configs/dashboard.json")
+    assert not (tmp_path / "data").exists()
+    assert not (tmp_path / "artifacts").exists()
+    dataset, bundle = load_default_experiment(tmp_path)
+    assert dataset.report["source_file"] == "Data Master.xlsx"
+    assert len(dataset.clean) == 51226
+    assert len(dataset.audit) == 52592
+    assert bundle.metadata["model_version"] == "lstm-20261115T115218576744Z"
+    result = forecast(dataset, bundle, "2025-11-10T07:25:00+07:00")
+    assert len(result["forecasts"]) == 6
+
+
+def test_windows_summary_paths_are_portable():
+    from pathlib import PurePosixPath
+    from pvforecast.ui.startup import project_path
+    assert project_path(PurePosixPath("/app"), "deployment\\default\\model.zip") == PurePosixPath("/app/deployment/default/model.zip")

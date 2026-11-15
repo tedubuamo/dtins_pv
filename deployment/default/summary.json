@@ -1,0 +1,98 @@
+{
+  "model": "deployment/default/model.zip",
+  "audit": "deployment/default",
+  "selected_config": {
+    "lookback": 12,
+    "hidden": 32,
+    "layers": 1,
+    "dropout": 0.1,
+    "learning_rate": 0.001,
+    "batch_size": 32,
+    "epochs": 100,
+    "patience": 10,
+    "seed": 42
+  },
+  "model_version": "lstm-20261115T115218576744Z",
+  "roundtrip_verified": true,
+  "forecast_origin": "2025-11-10T07:25:00+07:00",
+  "metrics": [
+    {
+      "minutes_ahead": 5,
+      "samples": 160,
+      "partition": "test",
+      "lstm_mae_w": 120.0089147672,
+      "lstm_rmse_w": 252.0422635875,
+      "lstm_r2": 0.9165073995,
+      "persistence_mae_w": 110.73125,
+      "persistence_rmse_w": 299.6589832626,
+      "pi_nominal": 0.95,
+      "picp": 0.94375,
+      "mean_interval_width_w": 825.6778564453
+    },
+    {
+      "minutes_ahead": 10,
+      "samples": 160,
+      "partition": "test",
+      "lstm_mae_w": 165.6499842107,
+      "lstm_rmse_w": 296.5149951782,
+      "lstm_r2": 0.88248876,
+      "persistence_mae_w": 163.3625,
+      "persistence_rmse_w": 357.0938602104,
+      "pi_nominal": 0.95,
+      "picp": 0.93125,
+      "mean_interval_width_w": 1215.3471679688
+    },
+    {
+      "minutes_ahead": 15,
+      "samples": 160,
+      "partition": "test",
+      "lstm_mae_w": 198.2033928335,
+      "lstm_rmse_w": 320.9202267564,
+      "lstm_r2": 0.8624118353,
+      "persistence_mae_w": 201.725,
+      "persistence_rmse_w": 400.1764298406,
+      "pi_nominal": 0.95,
+      "picp": 0.93125,
+      "mean_interval_width_w": 1323.9409179688
+    },
+    {
+      "minutes_ahead": 20,
+      "samples": 160,
+      "partition": "test",
+      "lstm_mae_w": 236.5083010256,
+      "lstm_rmse_w": 356.5544423851,
+      "lstm_r2": 0.8296366544,
+      "persistence_mae_w": 235.24375,
+      "persistence_rmse_w": 432.0788339528,
+      "pi_nominal": 0.95,
+      "picp": 0.96875,
+      "mean_interval_width_w": 2030.3653564453
+    },
+    {
+      "minutes_ahead": 25,
+      "samples": 160,
+      "partition": "test",
+      "lstm_mae_w": 258.9913226068,
+      "lstm_rmse_w": 372.9839777608,
+      "lstm_r2": 0.8133409289,
+      "persistence_mae_w": 249.13125,
+      "persistence_rmse_w": 449.7361796098,
+      "pi_nominal": 0.95,
+      "picp": 1.0,
+      "mean_interval_width_w": 2643.8725585938
+    },
+    {
+      "minutes_ahead": 30,
+      "samples": 160,
+      "partition": "test",
+      "lstm_mae_w": 281.4384649545,
+      "lstm_rmse_w": 387.3299868244,
+      "lstm_r2": 0.7931768498,
+      "persistence_mae_w": 260.46875,
+      "persistence_rmse_w": 437.4824639343,
+      "pi_nominal": 0.95,
+      "picp": 1.0,
+      "mean_interval_width_w": 3031.0947875977
+    }
+  ]
+}

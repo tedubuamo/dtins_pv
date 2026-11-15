@@ -1,0 +1,124 @@
+{
+  "data": {
+    "timestamp_column": "Updated Time",
+    "power_column": "Production Power(W)",
+    "timezone": "Asia/Jakarta",
+    "dayfirst": false,
+    "sheets": [
+      "Ags 2023",
+      "Sept 2023",
+      "Okt 2023",
+      "Nov 2023",
+      "Des 2023",
+      "Jan 2024",
+      "Feb 2024",
+      "Mar 2024",
+      "Apr 2024",
+      "Mei 2024",
+      "Juni 2024",
+      "Juli 2024",
+      "Ags 2024",
+      "Sep 2024",
+      "Okt 2024",
+      "Nov 2024",
+      "Des 2024",
+      "Jan 2025",
+      "Feb 2025",
+      "Mar 2025",
+      "Apr 2025",
+      "Mei 2025",
+      "Juni 2025",
+      "Juli 2025",
+      "Ags 2025",
+      "Sept 2025",
+      "Okt 2025",
+      "Nov 2025",
+      "Des 2025",
+      "Jan 2026"
+    ]
+  },
+  "source_sha256": "7476c6bc4122642c32afcf345efa08ba3c30c5527c4ba8bb00ad29b58ba9dec8",
+  "split": {
+    "ratios": [
+      0.7,
+      0.1,
+      0.1,
+      0.1
+    ],
+    "rule": "chronological cleaned rows; cuts at floor(7N/10), floor(8N/10), floor(9N/10)"
+  },
+  "boundaries": [
+    "2025-02-05T14:05:00+07:00",
+    "2025-04-07T07:20:00+07:00",
+    "2025-07-18T17:20:00+07:00"
+  ],
+  "partitions": {
+    "train": {
+      "rows": 35858,
+      "windows": {
+        "6": 8286,
+        "12": 4928,
+        "24": 1932
+      }
+    },
+    "validation": {
+      "rows": 5122,
+      "windows": {
+        "6": 787,
+        "12": 331,
+        "24": 50
+      }
+    },
+    "calibration": {
+      "rows": 5123,
+      "windows": {
+        "6": 382,
+        "12": 160,
+        "24": 42
+      }
+    },
+    "test": {
+      "rows": 5123,
+      "windows": {
+        "6": 493,
+        "12": 160,
+        "24": 19
+      }
+    }
+  },
+  "candidates": [
+    {
+      "lookback": 6,
+      "hidden": 32,
+      "layers": 1,
+      "dropout": 0.1,
+      "learning_rate": 0.001,
+      "batch_size": 32,
+      "epochs": 100,
+      "patience": 10,
+      "seed": 42
+    },
+    {
+      "lookback": 12,
+      "hidden": 32,
+      "layers": 1,
+      "dropout": 0.1,
+      "learning_rate": 0.001,
+      "batch_size": 32,
+      "epochs": 100,
+      "patience": 10,
+      "seed": 42
+    },
+    {
+      "lookback": 24,
+      "hidden": 32,
+      "layers": 1,
+      "dropout": 0.1,
+      "learning_rate": 0.001,
+      "batch_size": 32,
+      "epochs": 100,
+      "patience": 10,
+      "seed": 42
+    }
+  ]
+}

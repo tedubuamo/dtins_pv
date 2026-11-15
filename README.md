@@ -23,7 +23,7 @@ Shortcut Windows: `powershell -ExecutionPolicy Bypass -File .\run.ps1`. Launcher
 
 Dataset dan model aktif disimpan dalam sesi browser. Sumber, audit, dan model tersimpan di disk. Tanpa konfigurasi default, sesi baru memerlukan impor dataset dan pemuatan model kembali. Mengganti dataset meminta konfirmasi dan menghapus hasil forecast sesi sebelumnya.
 
-Jika `configs/dashboard.json` tersedia, sesi baru otomatis memuat pasangan dataset/model dari folder eksperimen yang ditunjuk oleh `experiment`. Konfigurasi lokal saat ini menunjuk hasil Data Master 70/10/10/10. Dashboard memeriksa hash dataset dan kesesuaian sumber pelatihan sebelum mengaktifkan keduanya, serta menampilkan kegagalan pemuatan bila berkas belum tersedia. Pilihan dataset/model manual dalam sesi aktif tetap dipertahankan. Halaman forecast mengisi origin awal dengan pengamatan terakhir yang mempunyai input kontinu cukup untuk model aktif.
+Jika `configs/dashboard.json` tersedia, sesi baru otomatis memuat pasangan dataset/model dari folder eksperimen yang ditunjuk oleh `experiment`. Konfigurasi saat ini menunjuk `deployment/default`, berisi hasil Data Master 70/10/10/10 yang ikut disertakan dalam repository untuk Streamlit Cloud. Dashboard memeriksa hash dataset dan kesesuaian sumber pelatihan sebelum mengaktifkan keduanya, serta menampilkan kegagalan pemuatan bila berkas belum tersedia. Pilihan dataset/model manual dalam sesi aktif tetap dipertahankan. Halaman forecast mengisi origin awal dengan pengamatan terakhir yang mempunyai input kontinu cukup untuk model aktif. Lihat [paket deployment](deployment/README.md) untuk berkas yang perlu ikut di-push.
 
 Tanggal pada dashboard ditampilkan sebagai `DD-MM-YYYY HH:mm WIB`, misalnya `10-11-2025 07:25 WIB`. Isian waktu replay dan batas partisi pelatihan menggunakan format yang sama (akhiran `WIB` boleh dihilangkan). Grafik dan tooltip memakai jam Asia/Jakarta. Timestamp internal, paket model, dan ekspor CSV/JSON tetap memakai format ISO dengan zona waktu agar dapat diproses ulang secara tepat.
 
@@ -61,7 +61,7 @@ artifacts/                  versioned model packages
 
 Setiap ZIP berisi checkpoint weights-only PyTorch, konfigurasi/metadata, scaler, kuantil calibration, riwayat pelatihan, metrik, prediksi test, dan manifest SHA-256. Loader memeriksa checksum serta kontrak input/output, versi scaler, dan versi calibration. Kalibrasi opsional: jika paket tidak memiliki calibration, model dapat digunakan dengan PI kosong dan peringatan. Jangan menggabungkan komponen dari eksperimen berbeda. Checksum mendeteksi kerusakan atau ketidakcocokan, bukan tanda tangan autentikasi.
 
-Folder data, artefak, dependensi lokal, dan kredensial diabaikan Git. Dokumen audit menyimpan nama sumber, hash, kolom, zona waktu, keputusan pembersihan, serta jumlah baris. File raw tidak ditimpa; processed membuat folder baru setiap impor. Tidak ada dataset produksi atau metrik penelitian bawaan.
+Folder kerja `data/`, `artifacts/`, dependensi lokal, dan kredensial diabaikan Git. Paket dataset/model Data Master yang dipilih sebagai default deployment disertakan terpisah di `deployment/default/`. Dokumen audit menyimpan nama sumber, hash, kolom, zona waktu, keputusan pembersihan, serta jumlah baris. File raw tidak ditimpa; processed membuat folder baru setiap impor. Metrik aktual eksperimen tersedia di `docs/DATA_MASTER_RESULTS.md`.
 
 ## CLI dan reproduksi
 
@@ -94,4 +94,4 @@ Paket model disimpan di `artifacts/` dan dapat dimuat melalui **Model Validation
 
 ## Batas rilis
 
-Integrasi SOLARMAN, akuisisi otomatis, kontrol inverter, weather features, dan hosting cloud berada di luar rilis pertama sesuai PRD. Penetapan dataset nyata, batas final partisi, konfigurasi terpilih, performa penelitian, dan kesesuaian konvensi integrasi dengan sumber perlu ditetapkan dari data aktual. Lihat `docs/ACCEPTANCE.md` untuk pemetaan persyaratan dan status verifikasi.
+Integrasi SOLARMAN, akuisisi otomatis, kontrol inverter, dan weather features berada di luar rilis pertama sesuai PRD. Dashboard Historical Replay menyediakan paket default portabel untuk deployment Streamlit Cloud. Dataset Data Master, batas partisi, konfigurasi terpilih, dan metrik eksperimen telah dicatat; interpretasi ilmiah dan kesesuaian konvensi integrasi dengan sumber tetap perlu penilaian peneliti. Lihat `docs/ACCEPTANCE.md` untuk pemetaan persyaratan dan status verifikasi.
